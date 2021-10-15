@@ -261,6 +261,7 @@ function checkWordCandidate(wordCCToCheck, i, j, peekDir, grid, dictionary) {
    }
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*let grid = [['A', 'B'],
             ['C', 'D']];
 let dictionary = ['AB','ABD','DCA','XY'];
@@ -268,6 +269,9 @@ let dictionary = ['AB','ABD','DCA','XY'];
 console.log(exports.findAllSolutions(grid, dictionary));*/
 =======
 
+=======
+
+>>>>>>> parent of 8db0849... Second commit; the solver now works as expected.
 let wordMatches = [];
 /*let grid = [['T', 'W', 'Y', 'R'],
             ['E', 'N', 'P', 'H'],
@@ -278,4 +282,7 @@ let dictionary = ['art', 'ego', 'gent', 'get', 'net', 'new', 'newt', 'prat',
                     'ten', 'went', 'wet', 'stont', 'stqura'];*/
 
 //console.log(exports.findAllSolutions(grid, dictionary));
+<<<<<<< HEAD
+>>>>>>> parent of 8db0849... Second commit; the solver now works as expected.
+=======
 >>>>>>> parent of 8db0849... Second commit; the solver now works as expected.
