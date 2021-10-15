@@ -6,17 +6,18 @@
  * @returns {string[]} solutions - Possible solutions to the Boggle board.
  * 
  * Programmer (Student ID): Ben Corriette (@02956064)
- * Last modified date: 10/14/2021
+ * Last modified date: 10/09/2021
  * 
- * Reference: https://bobbyhadz.com/blog/javascript-includes-case-insensitive
+ * Comments: The software specification has these requirements:
+ * 1. The words must be at least three letters in length.
+ * 2. A word tile cannot be used twice for the same word.
+ * 3. Words can be formed from adjacent tiles, including diagonal ones.
  */
-
-let wordMatches = [];
  exports.findAllSolutions = function(gridParam, dictParam) {
   let solutions = [];
   let grid = gridParam;
   let dictionary = dictParam;
-  
+
   // Iterate through the grid, applying the specification criteria to determine what will be added to the solutions array.
    for (let i = 0; i <= grid.length - 1; i++) {
      for (let j = 0; j <= grid[i].length - 1; j++) {
@@ -24,14 +25,13 @@ let wordMatches = [];
      }
    }
   solutions = wordMatches;
-  wordMatches = [];
   return solutions;
 }
 
 // Check if the tiles in the word candidate match the beginning of a word in the dictionary
 function checkIfTilesStartWord(word, dictionary) {
   for (let i = 0; i <= dictionary.length - 1; i++) {
-    if(dictionary[i].toLowerCase().startsWith(word.toLowerCase())) {
+    if(dictionary[i].startsWith(word)) {
       return true;
     }
   }
@@ -41,7 +41,7 @@ function checkIfTilesStartWord(word, dictionary) {
 // Check if the tiles in the word candidate match the end of a word in the dictionary
 function checkIfTilesEndWord(word, dictionary) {
   for (let i = 0; i <= dictionary.length - 1; i++) {
-    if(dictionary[i].toLowerCase().endsWith(word.toLowerCase())) {
+    if(dictionary[i].endsWith(word)) {
       return true;
     }
   }
@@ -53,7 +53,7 @@ function checkIfWordInDictionary(word, dictionary) {
    // First, check if the tiles contain three or more letters
    if (word.length >= 3){
       // Check the dictionary for a match
-      if (dictionary.find(entry => entry.toLowerCase() === word.toLowerCase())) {
+      if (dictionary.includes(word)) {
         return true;
       }
    }
@@ -62,7 +62,7 @@ function checkIfWordInDictionary(word, dictionary) {
 
 // Checks if word contains a 'Qu' or 'St' tile
 function checkIfWordHasQuOrSt(word) {
-  if (word.toLowerCase().match(/(qu|st)/)) {
+  if (word.match(/(Qu|St)/)) {
     return true;
   }
   return false;
@@ -170,6 +170,8 @@ function verifyWordStatus(i, j, tile, tilePeek, peekDir, wordCC, grid, dictionar
   if (!wordCC) {
      wordC = tile + tilePeek;
      let hasQuOrSt = checkIfWordHasQuOrSt(wordC);
+     // Convert the tiles to lowercase
+     wordC = wordC.toLowerCase();
      let reverseWordC = wordC.split('').reverse().join('');
      // Check if the tiles start or end a word
      if (checkIfTilesStartWord(wordC, dictionary)) {
@@ -221,6 +223,8 @@ function verifyWordStatus(i, j, tile, tilePeek, peekDir, wordCC, grid, dictionar
 
 // Check if the word candidate is a match
 function checkWordCandidate(wordCCToCheck, i, j, peekDir, grid, dictionary) {
+  // Convert the tiles to lowercase
+   wordCCToCheck = wordCCToCheck.toLowerCase();
    let reverseWord = wordCCToCheck.split('').reverse().join('');
    // Check if the word candidate starts or ends a word in the dictionary, then check if it's a word itself
    if (checkIfTilesStartWord(wordCCToCheck, dictionary)) {
@@ -256,8 +260,22 @@ function checkWordCandidate(wordCCToCheck, i, j, peekDir, grid, dictionary) {
      }
    }
 }
+<<<<<<< HEAD
 /*let grid = [['A', 'B'],
             ['C', 'D']];
 let dictionary = ['AB','ABD','DCA','XY'];
 
 console.log(exports.findAllSolutions(grid, dictionary));*/
+=======
+
+let wordMatches = [];
+/*let grid = [['T', 'W', 'Y', 'R'],
+            ['E', 'N', 'P', 'H'],
+            ['G', 'St', 'Qu', 'R'],
+            ['O', 'N', 'T', 'A']];
+let dictionary = ['art', 'ego', 'gent', 'get', 'net', 'new', 'newt', 'prat',
+                    'pry', 'qua', 'quart', 'rat', 'tar', 'tarp',
+                    'ten', 'went', 'wet', 'stont', 'stqura'];*/
+
+//console.log(exports.findAllSolutions(grid, dictionary));
+>>>>>>> parent of 8db0849... Second commit; the solver now works as expected.
